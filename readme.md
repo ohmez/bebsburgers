@@ -1,4 +1,5 @@
 # Bebs Burgers
+Welcome to your favorite burger generator.
 Here I'm building an app/site that's running logic from the server side using node and express, storing data on mysql database, and populating html pages using handlebars. 
 This will be deployed through heroku rounding up the full stack development and deployment. 
 <!-- 
