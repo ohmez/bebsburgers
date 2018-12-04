@@ -1,0 +1,23 @@
+<li>
+
+    
+    {{#if devoured}}
+    {{name}}
+    <img src="/assets/img/burger.jpg" alt="burger_img" style="height: 50px; opacity: 0.4">
+    {{!-- donothings --}}
+    {{else}}
+    <div class="col-4">
+    <div class="thumbnail">
+        <img src="/assets/img/burger.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>{{name}}</p>
+        </div>
+    </div>
+    </div>
+    <div class="col-2">
+    <button class="devourMe btn btn-default" data-id="{{id}}" data-newstate="{{devoured}}">
+        Eat Me!
+    </button>
+    </div>
+    {{/if}}
+</li>

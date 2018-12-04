@@ -59,7 +59,7 @@ Then installed all the dependencies for this app which can be found [here](packa
 The process starts with the server -[#](#Server.js)
 Then we move onto connections and configurations -[#](#Configuration)
 
-Once we have the routing set up its all about [receiving the post](app/routing/apiRoutes.js) from the new friend survey. -[#](#Comparison)
+Once we have the routing set up its all about [receiving the post](app/routing/apiRoutes.js) from the new friend survey. -[#](#Module.Exports)
 
   
 
@@ -91,7 +91,7 @@ First step was to establish the [database](./config/connection.js) and confirm i
 Again using the MVC method this is a pretty small file aswell with a NECESSARY `module.exports = connection;`
 Because these `.js` files are seperate from the `server.js` they MUST have module.exports established properly.
 The real configuration comes from the [ORM](./config/orm.js) and all the functions or switches as I like to think of them that exist within this homemade ORM.
-Since our app is pretty straight forward we should only need 3 functions for the GET, POST, and PUT methods we'll be using. 
+Since our app is pretty straight forward we should only need 3 functions for the ORM to communicate to our database with. They're SQL syntax based but I think of them as GET POST and PUT to psuedo out quickly. 
 ```js
 var orm = {
     pop: function burgerPop() {
@@ -105,17 +105,41 @@ var orm = {
     }
 }; // end orm
 ```
+Testing the orm functionality was key to moving forward since the database is the focal point of the content going to the client side.
+Placing in a callback inside the file testing the object functions allowed me to verify it was working properly before moving on. 
+```js
+orm.add('burgers','plainburger',function(res) {console.log(res)});
+orm.devour('burgers',1,function(res) {console.log(res)});
+```
+### Models
+The same was true for models as the ORM, since they're very similar and doing almost the same callbacks.
+I'm pretty proud with how small my object is.
+```js
+var burger = {
+    all: function(table,cb) {
+        orm.pop(table, (res) => cb(res));
+    },
+    add: function(table,burger, cb) {
+        orm.add(table,burger,(res) => cb(res));
+    },
+    eat: function(table,id,cb) {
+        orm.devour(table,id,(res) => cb(res));
+    }
+};
+```
+Testing was the same as ORM. 
+```js
+burger.all('burgers',function(res) { console.log(res)});
+burger.add('burgers','bananBurger',function(res) { console.log(res)});
+burger.eat('burgers',2,function(res) { console.log(res)});
+```
 
 #### HTML
-Here is where I ran into my first issue trying to use the `chosen.js` to populate the dropdowns was impossible for me.
-Ultimately I spent probably 3-4 hours trying to write this out myself and get the drop downs to work properly and store the selected answer but I had no real luck.
-I was able to break down each part individually when building out `test.html` files and using parts of the example heroku app with parts of my attempts.
-Nothing seemed to work when I wrote it out myself so I had to copy a majority of the HTML and after all that time I was so burnt out on HTML I had to move on or implode. 
+Here we use handlebars to create the HTML that'll be populating objects from the database.  
 
-#### Comparison
-This was a tricky part where we had to loop through a lot of data to compare it to the newly posted data in order to determine the response to send. 
-There's over 50 lines of `for` loop and `if` statements to make sure this works properly and compares everyone. 
-See issues 2 & 3 for more information on this process. 
+#### Module.Exports
+This was quiet a process, since every `.js` sheet is dependent on another one.
+The chain roughly goes `server.js>connnection.js>burger.js>orm.js` in order to move forward you had to build out atleast the GET function and test it by doing a callback and running it in node before you could export it and move to the next sheet in the chain. 
 
 ### Issues
 1. [Survey](app/public/survey.html)
@@ -137,7 +161,7 @@ I couldn't get postman to send data the same way the browser was; and so I built
         }// end loop to take user input and parse to integers. 
 ```
 3. [api Routing](app/routing/apiRoutes.js)
-I ran into another issue in looping through all the available friends to find the lowest comparison, I had to loop and reduce an array based on the value of a key of each object in the array.
+I ran into another issue in looping through all the available friends to find the lowest Module.Exports, I had to loop and reduce an array based on the value of a key of each object in the array.
 I did some research around arr.filter() and arr.reduce(), but I wasn't finding much luck for how to remove an item from the array if the array was full of objects.
 I may have overcomplicated it by storing them as objects but I felt it was best to search for their name in the friends to return the results. 
 ```js

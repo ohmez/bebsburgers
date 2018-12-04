@@ -1,0 +1,9 @@
+.devourMe {
+    position: relative;
+    display: inline-block;
+    margin-left: 8rem;
+    bottom: 6rem;
+}
+body {
+    background: lightcoral;
+}
