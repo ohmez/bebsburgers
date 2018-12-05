@@ -11,6 +11,15 @@ router.get('/', (req,res) => {
         res.render('index',burgers);
     });
 });
+router.get('/api/burgers', (req,res) => {
+    burger.all('burgers', (data) => {
+        var burgers = {
+            burgers: data
+        };
+        console.log(burgers);
+        res.json(burgers);
+    })
+})
 
 router.post("/api/burgers",(req,res) => {
     burger.add('burgers',
