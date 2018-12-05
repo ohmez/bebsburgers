@@ -15,7 +15,10 @@ router.get('/', (req,res) => {
 router.post("/api/burgers",(req,res) => {
     burger.add('burgers',
     req.body.name,(results) => res.json({id: results.insertId}));
-})
+});
 
+router.put('/api/burgers/:id',(req,res) => {
+    burger.eat('burgers',req.params.id,(results) => res.json({id: results.changedRows}));
+});
 
 module.exports = router;

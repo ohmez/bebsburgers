@@ -2,12 +2,6 @@
 Welcome to your favorite burger generator.
 Here I'm building an app/site that's running logic from the server side using node and express, storing data on mysql database, and populating html pages using handlebars. 
 This will be deployed through heroku rounding up the full stack development and deployment. 
-<!-- 
-Here I built a backend server that process stored data and returns content to the viewer while keeping the backend logic hidden.
-In the skeleton shown below you can see that data public is all that gets sent to the client, the rest is all in the backend being processed by node server.
-I found this very educational for why you break apart the logic into every different scenario.
-All the looping I had to do in order to make the `apiRoutes.js` process correctly would've been so clunky and confusing if it was in the `htmlRoutes.js` or the `server.js`. -->
-
 
 ## Index
 [Process](#Process)
@@ -135,7 +129,32 @@ burger.eat('burgers',2,function(res) { console.log(res)});
 ```
 
 #### HTML
-Here we use handlebars to create the HTML that'll be populating objects from the database.  
+Here we use handlebars to create the HTML that'll be populating objects from the database. 
+This went pretty smoothly, the HTML is pretty simple and the ajax calls control content population. 
+Using the Model View Controller method makes dynamic content very easy to populate once you create the partial views calling them inside handlebars is very smooth. 
+```handlebars
+<li>
+    {{#if devoured}}
+    {{name}}
+    <img src="/assets/img/burger.jpg" alt="burger_img" style="height: 50px; opacity: 0.4">
+    {{!-- donothings --}}
+    {{else}}
+    <div class="col-4">
+    <div class="thumbnail">
+        <img src="/assets/img/burger.jpg" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>{{name}}</p>
+        </div>
+    </div>
+    </div>
+    <div class="col-2">
+    <button class="devourMe btn btn-default" data-id="{{id}}" data-newstate="{{devoured}}">
+        Eat Me!
+    </button>
+    </div>
+    {{/if}}
+</li>
+```
 
 #### Module.Exports
 This was quiet a process, since every `.js` sheet is dependent on another one.
