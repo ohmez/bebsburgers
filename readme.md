@@ -4,7 +4,7 @@ Here I'm building an app/site that's running logic from the server side using no
 This will be deployed through heroku rounding up the full stack development and deployment. 
 
 ## Index
-[Process](#Process)
+1.[Process](#Process)
 
 ..*[Server](#Server.js)
 
