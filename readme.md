@@ -5,7 +5,7 @@ This will be deployed through heroku rounding up the full stack development and 
 
 ## Index
 1.[Process](#Process)
-..* [Server](#Server.js)
+...[Server](#Server.js)
 ..* [Config](#Configuration)
 
 ..* [Models](#Models)
