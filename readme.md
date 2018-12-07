@@ -4,15 +4,17 @@ Here I'm building an app/site that's running logic from the server side using no
 This will be deployed through heroku rounding up the full stack development and deployment. 
 
 ## Index
-1.[Process](#Process)
-... [Server](#Server.js)
-..* [Config](#Configuration)
+[Process](#Process)
 
-..* [Models](#Models)
+[Server](#Server.js)
 
-..* [HTML](#HTML)
+[Config](#Configuration)
 
-..* [Module.Exports](#Module.Exports)
+[Models](#Models)
+
+[HTML](#HTML)
+
+[Module.Exports](#Module.Exports)
     
 [Deployed](https://keagans-bebsburgers.herokuapp.com/)
 
