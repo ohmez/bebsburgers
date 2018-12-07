@@ -5,12 +5,11 @@ This will be deployed through heroku rounding up the full stack development and 
 
 ## Index
 [Process](#Process)
-
-    [Server](#Server.js)
-    [Config](#Configuration)
-    [Models](#Models)
-    [HTML](#HTML)
-    [Module.Exports](#Module.Exports)
+..*[Server](#Server.js)
+..*[Config](#Configuration)
+..*[Models](#Models)
+..*[HTML](#HTML)
+..*[Module.Exports](#Module.Exports)
     
 [Deployed](https://keagans-bebsburgers.herokuapp.com/)
 
